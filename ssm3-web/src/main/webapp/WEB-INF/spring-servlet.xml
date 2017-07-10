@@ -10,8 +10,9 @@
 
     <context:annotation-config/>
 
-    <context:component-scan base-package="com" />
+    <context:component-scan base-package="com.zhiang.controller" />
 
+    <mvc:annotation-driven/>
 
     <!-- velocity环境配置 -->
     <bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
@@ -38,4 +39,8 @@
         <property name="dateToolAttribute" value="dateTool"/>
         <property name="numberToolAttribute" value="numberTool"/>
     </bean>
+
+    <import resource="classpath:/mybatis/mybatis-spring-config.xml"/>
+    <bean class="org.apache.ibatis.logging.LogFactory" init-method="useStdOutLogging"></bean>
+
 </beans>
