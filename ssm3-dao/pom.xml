@@ -15,5 +15,59 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    
+    <dependencies>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.3.3</version>
+                <configuration>
+                    <configurationFile>${basedir}/mybatis-gen/generatorConfig.xml</configurationFile>
+                    <outputDirectory>${basedir}/src/main/java</outputDirectory>
+                    <overwrite>true</overwrite>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.xxg</groupId>
+                        <artifactId>mybatis-generator-plugin</artifactId>
+                        <version>1.0.0</version>
+                        <scope>system</scope>
+                        <systemPath>${project.basedir}/mybatis-gen/mybatis-generator-plugin-1.0.0.jar</systemPath>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.blackcowx</groupId>
+                        <artifactId>mybatis-generator-auto-comment-plugin</artifactId>
+                        <version>1.0-SNAPSHOT</version>
+                        <scope>system</scope>
+                        <systemPath>
+                            ${project.basedir}/mybatis-gen/mybatis-generator-auto-comment-plugin-1.0-SNAPSHOT.jar
+                        </systemPath>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+
+    </build>
 </project>

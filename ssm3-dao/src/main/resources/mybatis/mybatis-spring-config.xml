@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd"
+
+       default-autowire="byName">
+    <!-- 数据库相关 tddl 5.0.8 -->
+    <bean id="mysqlDataSource" class="com.taobao.tddl.jdbc.group.TGroupDataSource"
+          init-method="init">
+        <property name="appName" value="MESA_APP"/>
+        <property name="dbGroupKey" value="MESA_GROUP"/>
+    </bean>
+
+    <bean id="mysqlSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="mysqlDataSource"/>
+        <!-- domain的包路径，类似MyBatis的typeAliases配置,根据实际情况修改或添加多个 -->
+        <property name="typeAliasesPackage" value="com.tmall.g5.mesa.domain"/>
+        <!-- mapper配置文件的路径，类似MyBatis的mappers配置 -->
+        <property name="mapperLocations" value="classpath:/mapper/*Mapper.xml"/>
+        <property name="configLocation" value="classpath:/mybatis/mybatis-config.xml"/>
+    </bean>
+    <!-- 扫描接口类的包路径 -->
+    <bean id="mysqlMapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.tmall.g5.mesa.mapper"/>
+        <property name="sqlSessionFactoryBeanName" value="mysqlSqlSessionFactory"/>
+    </bean>
+
+
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="mysqlDataSource"/>
+    </bean>
+
+    <!-- 支持注解式事务 -->
+    <tx:annotation-driven transaction-manager="txManager"/>
+
+</beans>
