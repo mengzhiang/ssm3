@@ -54,6 +54,6 @@ public class IndexController {
 
         List<UserDO> list = userDOMapper.selectByExample(example);
 
-        return RestResult.success(list.size());
+        return RestResult.success(list);
     }
 }
