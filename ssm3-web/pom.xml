@@ -15,7 +15,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <packaging>war</packaging>
-    <name>mesa-web Maven Webapp</name>
+    <name>ssm3-web Maven Webapp</name>
     <url>http://maven.apache.org</url>
 
     <properties>

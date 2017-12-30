@@ -23,7 +23,7 @@
     </properties>
 
     <packaging>pom</packaging>
-    <name>mesa</name>
+    <name>ssm3</name>
     <url>http://maven.apache.org</url>
     <dependencyManagement>
         <dependencies>

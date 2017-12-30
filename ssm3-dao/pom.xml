@@ -15,7 +15,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>mesa-dao</name>
+    <name>ssm3-dao</name>
     <url>http://maven.apache.org</url>
 
     <properties>
