@@ -9,14 +9,16 @@
     <bean id="mysqlDataSource" class="org.apache.commons.dbcp.BasicDataSource"
           destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://localhost:3306/S2SH" />
+       <!-- <property name="url" value="jdbc:mysql://localhost:3306/S2SH" /> -->
+        <property name="url" value="jdbc:mysql://rm-bp11uva220089616ezo.mysql.rds.aliyuncs.com:3306/ssm3" />
         <property name="username" value="root" />
-        <property name="password" value="123456" />
-    </bean>
+        <!-- <property name="password" value="123456" /> -->
+		 <property name="password" value="MEng-1034" />
+	 </bean>
 
-    <bean id="mysqlSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="mysqlDataSource"/>
-        <!-- domain的包路径，类似MyBatis的typeAliases配置,根据实际情况修改或添加多个 -->
+	 <bean id="mysqlSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		 <property name="dataSource" ref="mysqlDataSource"/>
+		 <!-- domain的包路径，类似MyBatis的typeAliases配置,根据实际情况修改或添加多个 -->
         <property name="typeAliasesPackage" value="com.zhiang.ssm3.domain"/>
         <!-- mapper配置文件的路径，类似MyBatis的mappers配置 -->
         <property name="mapperLocations" value="classpath:/mapper/*Mapper.xml"/>
