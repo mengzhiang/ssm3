@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import com.zhiang.ssm3.domain.UserDO;
 import com.zhiang.ssm3.domain.UserDOExample;
 import com.zhiang.ssm3.mapper.UserDOMapper;
+import com.zhiang.util.ChineseName;
+import com.zhiang.util.RandomPwd;
 import com.zhiang.util.RestResult;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,5 +57,22 @@ public class IndexController {
         List<UserDO> list = userDOMapper.selectByExample(example);
 
         return RestResult.success(list);
+    }
+
+    @RequestMapping("/insert.json")
+    @ResponseBody
+    public RestResult insert(HttpServletRequest request, @RequestParam(value = "name", required = false) String name,
+                           @RequestParam(value = "pwd", defaultValue = "pwd") String pwd)
+            throws IOException, ServletException {
+
+        UserDO userDO = new UserDO();
+
+        String str = "孟志昂";
+        str = new String(str.getBytes(),"ISO8859_1");
+        userDO.setName(str);
+        userDO.setPwd(RandomPwd.getRandomPwd());
+
+        int count = userDOMapper.insert(userDO);
+        return RestResult.success(count);
     }
 }
